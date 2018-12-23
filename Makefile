@@ -6,7 +6,7 @@
 #    By: tduval <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/18 11:05:24 by tduval            #+#    #+#              #
-#    Updated: 2018/12/23 03:56:02 by tduval           ###   ########.fr        #
+#    Updated: 2018/12/23 04:00:56 by tduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS		=	srcs/minishell.c	\
 				srcs/act_prog.c		\
 				built-ins/env.c		\
 				built-ins/setenv.c	\
-				built-ins/echo.c
+				built-ins/echo.c	\
+				built-ins/cd.c
 
 OBJS		=	$(SRCS:.c=.o)
 

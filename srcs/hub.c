@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 20:31:58 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/23 02:31:58 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/23 04:01:21 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int			hub(char **argv)
 	else if (ft_strcmp(argv[0], "unsetenv") == 0)
 		return (1);
 	else if (ft_strcmp(argv[0], "cd") == 0)
-		return (1);
+		return (bi_cd(argv));
 	else if (ft_strcmp(argv[0], "exit") == 0)
 		exit (0);
 	else if (path_prog(argv))

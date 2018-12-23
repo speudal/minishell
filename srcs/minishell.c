@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:09:32 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/23 03:11:17 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/23 04:09:31 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int			main(void)
 			free_split(argv);
 			ft_strdel(&com);
 		}
+		else
+			ft_putchar('\n');
 	}
 	return (0);
 }

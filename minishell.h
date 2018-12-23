@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 20:35:59 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/23 02:32:27 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/23 04:01:47 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int				hub(char **argv);
 int				bi_env(char **argv);
 int				bi_setenv(char **argv);
 int				bi_echo(char **argv);
+int				bi_cd(char **argv);
 
 #endif
