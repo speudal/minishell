@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:09:32 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/23 22:30:36 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/23 23:59:01 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int			main(void)
 		return (0);
 	while (69)
 	{
-		write(1, "\e[32m$> \e[39m", 14);
+		write(1, "\033[1;31m$> \e[39m", 16);
 		com = 0;
 		if (get_next_line(1, &com))
 		{
@@ -69,11 +69,11 @@ int			main(void)
 				return (0);
 			if (!(argv = ft_strsplit(tmp, ' ')))
 				return (0);
+			if (!(argv = arg_repl(argv, envi)))
+				return (0);
 			if (argv[0])
-			{
 				if (!(hub(argv, envi)))
 					ft_printf("minishell: %s: command not found.\n", argv[0]);
-			}
 			free_split(argv);
 			ft_strdel(&com);
 			ft_strdel(&tmp);
