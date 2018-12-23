@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 20:31:58 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/23 21:54:16 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/23 22:31:00 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int			hub(char **argv, t_env *envi)
 	else if (ft_strequ(argv[0], "echo"))
 		return (bi_echo(argv));
 	else if (ft_strequ(argv[0], "setenv"))
-		return (bi_setenv(argv));
+		return (bi_setenv(argv, envi));
 	else if (ft_strequ(argv[0], "unsetenv"))
 		return (1);
 	else if (ft_strequ(argv[0], "cd"))

@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 20:35:59 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/23 21:53:02 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/23 22:30:02 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 typedef struct 				s_env
 {
 	char					*var;
-	char					*value;
+	char					*val;
 	struct s_env			*next;
 }							t_env;
 
@@ -29,7 +29,7 @@ int							act_prog(char *path, char **argv);
 void						free_split(char **argv);
 int							hub(char **argv, t_env *envi);
 int							bi_env(char **argv, t_env *cpy);
-int							bi_setenv(char **argv);
+int							bi_setenv(char **argv, t_env *envi);
 int							bi_echo(char **argv);
 int							bi_cd(char **argv);
 

@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 20:35:11 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/23 20:43:11 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/23 22:32:19 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_env	*get_env(void)
 				return (0);
 			if (!(new->var = get_name(environ[i])))
 				return (0);
-			if (!(new->value = get_value(environ[i])))
+			if (!(new->val = get_value(environ[i])))
 				return (0);
 			or = new;
 		}
@@ -70,7 +70,7 @@ t_env	*get_env(void)
 				return (0);
 			if (!(new->next->var = get_name(environ[i])))
 				return (0);
-			if (!(new->next->value = get_value(environ[i])))
+			if (!(new->next->val = get_value(environ[i])))
 				return (0);
 			new = new->next;
 		}

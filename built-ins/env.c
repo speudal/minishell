@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 21:19:34 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/23 20:43:33 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/23 22:31:19 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		bi_env(char **argv, t_env *cpy)
 	{
 		ft_putstr(cpy->var);
 		ft_putchar('=');
-		ft_putstr(cpy->value);
+		ft_putstr(cpy->val);
 		ft_putchar('\n');
 		cpy = cpy->next;
 		i++;

@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:09:32 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/23 22:02:40 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/23 22:30:36 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	free_env(t_env	*envi)
 	{
 		tmp = envi->next;
 		ft_strdel(&envi->var);
-		ft_strdel(&envi->value);
+		ft_strdel(&envi->val);
 		free(envi);
 		envi = tmp;
 	}
