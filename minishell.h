@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 20:35:59 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/23 22:30:02 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/23 22:46:19 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void						free_split(char **argv);
 int							hub(char **argv, t_env *envi);
 int							bi_env(char **argv, t_env *cpy);
 int							bi_setenv(char **argv, t_env *envi);
+int							bi_unsetenv(char **argv, t_env *envi);
 int							bi_echo(char **argv);
 int							bi_cd(char **argv);
 

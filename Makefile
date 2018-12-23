@@ -6,7 +6,7 @@
 #    By: tduval <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/18 11:05:24 by tduval            #+#    #+#              #
-#    Updated: 2018/12/23 20:36:53 by tduval           ###   ########.fr        #
+#    Updated: 2018/12/23 22:47:02 by tduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,15 +18,16 @@ CFLAGS		=	-Wall -Werror -Wextra -g
 
 LIBFT		=	libft.a
 
-SRCS		=	srcs/minishell.c	\
-				srcs/hub.c			\
-				srcs/get_path.c		\
-				srcs/free_split.c	\
-				srcs/get_env.c		\
-				srcs/act_prog.c		\
-				built-ins/env.c		\
-				built-ins/setenv.c	\
-				built-ins/echo.c	\
+SRCS		=	srcs/minishell.c		\
+				srcs/hub.c				\
+				srcs/get_path.c			\
+				srcs/free_split.c		\
+				srcs/get_env.c			\
+				srcs/act_prog.c			\
+				built-ins/env.c			\
+				built-ins/setenv.c		\
+				built-ins/unsetenv.c	\
+				built-ins/echo.c		\
 				built-ins/cd.c
 
 OBJS		=	$(SRCS:.c=.o)
