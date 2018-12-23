@@ -6,7 +6,7 @@
 #    By: tduval <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/18 11:05:24 by tduval            #+#    #+#              #
-#    Updated: 2018/12/23 22:47:02 by tduval           ###   ########.fr        #
+#    Updated: 2018/12/23 22:56:22 by tduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS		=	srcs/minishell.c		\
 				srcs/free_split.c		\
 				srcs/get_env.c			\
 				srcs/act_prog.c			\
+				srcs/get_enval.c		\
 				built-ins/env.c			\
 				built-ins/setenv.c		\
 				built-ins/unsetenv.c	\
