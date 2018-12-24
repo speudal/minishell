@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 20:31:58 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/23 22:56:40 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 01:22:36 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,50 @@ static int	path_prog(char **argv)
 	return (i);
 }
 
-static int	local_command(char **argv)
+static char	**copy_env(t_env *envi)
+{
+	t_env	*or;
+	int		i;
+	char	**ret;
+
+	i = 0;
+	or = envi;
+	while (envi)
+	{
+		i++;
+		envi = envi->next;
+	}
+	if (!(ret = (char **)malloc(sizeof(char *) * i + 1)))
+		return (0);
+	ret[i] = 0;
+	i = 0;
+	envi = or;
+	while (envi)
+	{
+		if (!(ret[i] = ft_strjoin(ft_strjoin(envi->var, "="), envi->val)))
+			return (0);
+		i++;
+	}
+	return (ret);
+}
+
+static int	local_command(char **argv, t_env *envi)
 {
 	pid_t		new;
 	int			status;
-	extern char	**environ;
+	char		**vne;
 	t_stat		buf;
 
 	lstat(argv[0], &buf);
 	if (S_IXUSR & buf.st_mode)
 	{
+		vne = copy_env(envi);
 		new = fork();
 		if (new == 0)
-			execve(argv[0], argv, environ);
+			execve(argv[0], argv, vne);
 		else if (new > 0)
 			new = wait(&status);
+		free_split(vne);
 		return (1);
 	}
 	return (0);
@@ -71,7 +100,7 @@ int			hub(char **argv, t_env *envi)
 		exit (0); //oublie pas de free
 	else if (path_prog(argv))
 		return (1);
-	else if (local_command(argv))
+	else if (local_command(argv, envi))
 		return (1);
 	return (0);
 }
