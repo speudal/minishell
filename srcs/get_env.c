@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 20:35:11 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/24 02:37:21 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 03:38:01 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,39 +42,57 @@ static char		*get_value(char *str)
 	return (ft_strdup(str + 1));
 }
 
-t_env	*get_env(void)
+static void		proc(char *enve, t_env *new)
+{
+	if (!(new->next = (t_env *)malloc(sizeof(t_env))))
+		return ;
+	if (!(new->next->var = get_name(enve)))
+	{
+		free(new->next);
+		return ;
+	}
+	if (!(new->next->val = get_value(enve)))
+	{
+		free(new->next->var);
+		free(new->next);
+		return ;
+	}
+}
+
+static t_env	*split(t_env *new, char *enve)
+{
+	if (!(new = (t_env *)malloc(sizeof(t_env))))
+		return (0);
+	if (!(new->var = get_name(enve)))
+		return (0);
+	if (!(new->val = get_value(enve)))
+		return (0);
+	return (new);
+}
+
+t_env			*get_env(void)
 {
 	extern char	**environ;
 	t_env		*new;
 	t_env		*or;
 	int			i;
 
-	i = 0;
+	i = -1;
 	new = 0;
 	or = 0;
-	while (environ[i])
+	while (environ[++i])
 	{
 		if (!new)
 		{
-			if (!(new = (t_env *)malloc(sizeof(t_env))))
-				return (0);
-			if (!(new->var = get_name(environ[i])))
-				return (0);
-			if (!(new->val = get_value(environ[i])))
+			if (!(new = split(new, environ[i])))
 				return (0);
 			or = new;
 		}
 		else
 		{
-			if (!(new->next = (t_env *)malloc(sizeof(t_env))))
-				return (0);
-			if (!(new->next->var = get_name(environ[i])))
-				return (0);
-			if (!(new->next->val = get_value(environ[i])))
-				return (0);
+			proc(environ[i], new);
 			new = new->next;
 		}
-		i++;
 	}
 	if (new)
 		new->next = 0;
