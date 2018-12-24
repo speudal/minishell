@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 20:35:59 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/23 23:15:26 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 00:19:03 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct	dirent		t_dirent;
 char						**get_path(void);
 char						**arg_repl(char **argv, t_env *envi);
 char						*get_enval(t_env *envi, char *target);
+void						ch_enval(t_env *envi, char *vari, char *valu);
 t_env						*get_env(void);
 int							act_prog(char *path, char **argv);
 void						free_split(char **argv);

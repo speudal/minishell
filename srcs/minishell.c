@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:09:32 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/23 23:59:01 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 00:48:16 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,37 @@ static void	free_env(t_env	*envi)
 	}
 }
 
+static char	*prompted(t_env *envi)
+{
+	char	*tmp;
+	char	*tmp2;
+
+	tmp = get_enval(envi, "USER");
+	tmp2 = ft_strjoin(tmp, "@");
+	free(tmp);
+	tmp = ft_strjoin(tmp2, "minishell");
+	free(tmp2);
+	return (tmp);
+}
+
 int			main(void)
 {
 	t_env	*envi;
 	char	*com;
+	char	*prompt;
 	char	*tmp;
 	char	**argv;
 
 	com = 0;
+	prompt = 0;
 	argv = 0;
 	if (!(envi = get_env()))
 		return (0);
 	while (69)
 	{
-		write(1, "\033[1;31m$> \e[39m", 16);
+		ft_strdel(&prompt);
+		prompt = prompted(envi);
+		ft_printf("%s\033[1;31m> \e[39m", prompt);
 		com = 0;
 		if (get_next_line(1, &com))
 		{
