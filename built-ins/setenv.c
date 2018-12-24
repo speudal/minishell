@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 02:32:53 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/23 22:36:37 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 03:08:07 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ int			bi_setenv(char **argv, t_env *envi)
 	if (!argv[1])
 		return (bi_env(argv, envi));
 	else if (ct_args(argv) != 3)
-	{
-		ft_putendl("setenv: usage: setenv [VARIABLE] [VALUE]");
-		return (1);
-	}
+		return (ft_printf("setenv: usage: setenv [VARIABLE] [VALUE]"));
 	while (envi->next && ft_strequ(envi->var, argv[1]) == 0)
 		envi = envi->next;
 	if (ft_strequ(envi->var, argv[1]))
