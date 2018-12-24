@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:09:32 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/24 00:48:16 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 02:57:47 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*no_tab(char *com)
 	return (ret);
 }
 
-static void	free_env(t_env	*envi)
+static void	free_env(t_env *envi)
 {
 	t_env	*tmp;
 
@@ -61,17 +61,36 @@ static char	*prompted(t_env *envi)
 	return (tmp);
 }
 
+static int	split_main(char *com, t_env *envi)
+{
+	char	*tmp;
+	char	**argv;
+
+	tmp = 0;
+	argv = 0;
+	if (!(tmp = no_tab(com)))
+		return (0);
+	if (!(argv = ft_strsplit(tmp, ' ')))
+		return (0);
+	if (!(argv = arg_repl(argv, envi)))
+		return (0);
+	if (argv[0])
+		if (!(hub(argv, envi)))
+			ft_printf("minishell: %s: command not found.\n", argv[0]);
+	free_split(argv);
+	ft_strdel(&com);
+	ft_strdel(&tmp);
+	return (1);
+}
+
 int			main(void)
 {
 	t_env	*envi;
 	char	*com;
 	char	*prompt;
-	char	*tmp;
-	char	**argv;
 
 	com = 0;
 	prompt = 0;
-	argv = 0;
 	if (!(envi = get_env()))
 		return (0);
 	while (69)
@@ -82,18 +101,8 @@ int			main(void)
 		com = 0;
 		if (get_next_line(1, &com))
 		{
-			if (!(tmp = no_tab(com)))
+			if (!split_main(com, envi))
 				return (0);
-			if (!(argv = ft_strsplit(tmp, ' ')))
-				return (0);
-			if (!(argv = arg_repl(argv, envi)))
-				return (0);
-			if (argv[0])
-				if (!(hub(argv, envi)))
-					ft_printf("minishell: %s: command not found.\n", argv[0]);
-			free_split(argv);
-			ft_strdel(&com);
-			ft_strdel(&tmp);
 		}
 		else
 			ft_putchar('\n');
