@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 03:58:04 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/24 03:23:44 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 09:16:02 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ static void	regular_case(char **argv, t_env *envi)
 	else
 	{
 		ch_enval(envi, "OLDPWD", path);
-		ch_enval(envi, "PWD", argv[1]);
+		getcwd(path, 256);
+		ch_enval(envi, "PWD", path);
 	}
 }
 
