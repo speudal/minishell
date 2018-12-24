@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 02:32:53 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/24 04:02:48 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 04:04:33 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	check_var(char **argv)
 		{
 			if (!(ft_isalnum(argv[i][j])))
 			{
-				ft_putendl("setenv: error: a variable can only contains
+				ft_putendl("setenv: error: a variable can only contains\
 						digits or letters.");
 				return (0);
 			}
