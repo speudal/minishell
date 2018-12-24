@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 02:32:53 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/24 04:07:17 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 04:18:30 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,18 @@ static int	ct_args(char **argv)
 
 static int	check_var(char **argv)
 {
-	int		i;
 	int		j;
 
-	i = 1;
-	while (i < 3)
+	j = 0;
+	while (argv[1][j])
 	{
-		j = 0;
-		while (argv[i][j])
+		if (!(ft_isalnum(argv[1][j])))
 		{
-			if (!(ft_isalnum(argv[i][j])))
-			{
-				ft_putendl("setenv: error: a variable can only contains\
+			ft_putendl("setenv: error: a variable can only contains\
 digits or letters.");
-				return (0);
-			}
-			j++;
+			return (0);
 		}
-		i++;
+		j++;
 	}
 	return (1);
 }
