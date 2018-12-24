@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 02:32:53 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/24 04:04:33 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 04:07:17 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	check_var(char **argv)
 			if (!(ft_isalnum(argv[i][j])))
 			{
 				ft_putendl("setenv: error: a variable can only contains\
-						digits or letters.");
+digits or letters.");
 				return (0);
 			}
 			j++;
@@ -53,7 +53,7 @@ int			bi_setenv(char **argv, t_env *envi)
 	if (!argv[1])
 		return (bi_env(argv, envi));
 	else if (ct_args(argv) != 3)
-		return (ft_printf("setenv: usage: setenv [VARIABLE] [VALUE]"));
+		return (ft_printf("setenv: usage: setenv [VARIABLE] [VALUE]\n"));
 	while (envi->next && ft_strequ(envi->var, argv[1]) == 0)
 		envi = envi->next;
 	if (ft_strequ(envi->var, argv[1]))
