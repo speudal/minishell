@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 20:31:58 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/24 02:20:51 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 03:47:48 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,38 +16,6 @@
 #include <stdlib.h>
 #include "libft.h"
 #include "minishell.h"
-
-static char	**copy_env(t_env *envi)
-{
-	t_env	*or;
-	int		i;
-	char	*tmp;
-	char	**ret;
-
-	i = 0;
-	or = envi;
-	while (envi)
-	{
-		i++;
-		envi = envi->next;
-	}
-	if (!(ret = (char **)malloc(sizeof(char *) * i + 1)))
-		return (0);
-	ret[i] = 0;
-	i = 0;
-	envi = or;
-	while (envi)
-	{
-		if (!(tmp = ft_strjoin(envi->var, "=")))
-			return (0);
-		if (!(ret[i] = ft_strjoin(tmp, envi->val)))
-			return (0);
-		ft_strdel(&tmp);
-		envi = envi->next;
-		i++;
-	}
-	return (ret);
-}
 
 static int	path_prog(char **argv, t_env *envi)
 {
@@ -62,14 +30,13 @@ static int	path_prog(char **argv, t_env *envi)
 		free_split(vne);
 		return (0);
 	}
-	while (path[i] && !(act_prog(path[i], argv, vne))) 
+	while (path[i] && !(act_prog(path[i], argv, vne)))
 		i++;
 	i = path[i] ? 1 : 0;
 	free_split(path);
 	free_split(vne);
 	return (i);
 }
-
 
 static int	local_command(char **argv, t_env *envi)
 {
@@ -93,7 +60,7 @@ static int	local_command(char **argv, t_env *envi)
 	return (0);
 }
 
-static void	free_env(t_env	*envi)
+static void	free_env(t_env *envi)
 {
 	t_env	*tmp;
 
@@ -106,7 +73,6 @@ static void	free_env(t_env	*envi)
 		envi = tmp;
 	}
 }
-
 
 int			hub(char **argv, t_env *envi)
 {
@@ -124,7 +90,7 @@ int			hub(char **argv, t_env *envi)
 	{
 		free_split(argv);
 		free_env(envi);
-		exit (0);
+		exit(0);
 	}
 	else if (path_prog(argv, envi))
 		return (1);

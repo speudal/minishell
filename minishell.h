@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 20:35:59 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/24 02:52:45 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 03:49:06 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct				s_env
 typedef struct stat			t_stat;
 typedef struct dirent		t_dirent;
 
+char						**copy_env(t_env *envi);
 char						**get_path(char **vne);
 char						**arg_repl(char **argv, t_env *envi);
 char						*get_enval(t_env *envi, char *target);

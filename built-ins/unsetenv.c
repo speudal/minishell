@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 22:40:56 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/23 22:52:10 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 02:51:54 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ct_args(char **argv)
 	return (i);
 }
 
-int		bi_unsetenv(char **argv, t_env *envi)
+int			bi_unsetenv(char **argv, t_env *envi)
 {
 	t_env	*prev;
 
