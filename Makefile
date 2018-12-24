@@ -6,7 +6,7 @@
 #    By: tduval <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/18 11:05:24 by tduval            #+#    #+#              #
-#    Updated: 2018/12/24 00:18:43 by tduval           ###   ########.fr        #
+#    Updated: 2018/12/24 02:47:58 by tduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	minishell
 
 INCLUDES	=	-I . -I libft/
 
-CFLAGS		=	-Wall -Werror -Wextra -g
+CFLAGS		=	-Wall -Werror -Wextra
 
 LIBFT		=	libft.a
 
