@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 20:31:58 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/24 01:22:36 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 01:58:19 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,6 @@
 #include <stdlib.h>
 #include "libft.h"
 #include "minishell.h"
-
-static int	path_prog(char **argv)
-{
-	int		i;
-	char	**path;
-
-	i = 0;
-	if (!(path = get_path()))
-	{
-		ft_putstr("error : PATH variable not found.\n");
-		return (0);
-	}
-	while (path[i] && !(act_prog(path[i], argv))) 
-		i++;
-	i = path[i] ? 1 : 0;
-	free_split(path);
-	return (i);
-}
 
 static char	**copy_env(t_env *envi)
 {
@@ -57,10 +39,33 @@ static char	**copy_env(t_env *envi)
 	{
 		if (!(ret[i] = ft_strjoin(ft_strjoin(envi->var, "="), envi->val)))
 			return (0);
+		envi = envi->next;
 		i++;
 	}
 	return (ret);
 }
+
+static int	path_prog(char **argv, t_env *envi)
+{
+	int		i;
+	char	**vne;
+	char	**path;
+
+	i = 0;
+	vne = copy_env(envi);
+	if (!(path = get_path(vne)))
+	{
+		free_split(vne);
+		return (0);
+	}
+	while (path[i] && !(act_prog(path[i], argv, vne))) 
+		i++;
+	i = path[i] ? 1 : 0;
+	free_split(path);
+	free_split(vne);
+	return (i);
+}
+
 
 static int	local_command(char **argv, t_env *envi)
 {
@@ -98,7 +103,7 @@ int			hub(char **argv, t_env *envi)
 		return (bi_cd(argv, envi));
 	else if (ft_strequ(argv[0], "exit"))
 		exit (0); //oublie pas de free
-	else if (path_prog(argv))
+	else if (path_prog(argv, envi))
 		return (1);
 	else if (local_command(argv, envi))
 		return (1);

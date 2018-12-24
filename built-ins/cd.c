@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 03:58:04 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/24 01:28:06 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 02:04:30 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ int			bi_cd(char **argv, t_env *envi)
 			ft_printf("cd: no such file or directoy: %s\n", argv[1]);
 		else if (S_ISDIR(buf.st_mode))
 		{
+			getcwd(path, 256);
 			if (chdir(argv[1]) == -1)
 				ft_printf("cd: permission denied: %s\n", argv[1]);
 			else
 			{
-				getcwd(path, 256);
 				ch_enval(envi, "OLDPWD", path);
 				ch_enval(envi, "PWD", argv[1]);
 			}

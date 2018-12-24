@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 22:12:24 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/23 01:58:30 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 01:55:29 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,21 @@
 #include "libft.h"
 #include "minishell.h"
 
-static void	do_it(char *path, char **argv)
+static void	do_it(char *path, char **argv, char **vne)
 {
 	int			status;
-	extern char	**environ;
 	pid_t		new_pid;
 
 	new_pid = fork();
 	if (new_pid == 0)
-		execve(path, argv, environ);
+		execve(path, argv, vne);
 	else if (new_pid > 0)
 		new_pid = wait(&status);
 	else if (new_pid == -1)
 		ft_printf("Couldn't fork on %s.\n", path);
 }
 
-int		act_prog(char *path, char **argv)
+int		act_prog(char *path, char **argv, char **vne)
 {
 	DIR			*op;
 	char		*tmp;
@@ -54,7 +53,7 @@ int		act_prog(char *path, char **argv)
 		lstat(tmp2, &buf);
 		if (S_IXUSR & buf.st_mode && ft_strcmp(argv[0], fil->d_name) == 0)
 		{
-			do_it(tmp2, argv);
+			do_it(tmp2, argv, vne);
 			ft_strdel(&tmp2);
 			closedir(op);
 			return (1);
