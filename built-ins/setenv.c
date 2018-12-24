@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 02:32:53 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/24 03:08:07 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 04:02:48 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,30 @@ static int	ct_args(char **argv)
 	return (i);
 }
 
+static int	check_var(char **argv)
+{
+	int		i;
+	int		j;
+
+	i = 1;
+	while (i < 3)
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (!(ft_isalnum(argv[i][j])))
+			{
+				ft_putendl("setenv: error: a variable can only contains
+						digits or letters.");
+				return (0);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
 int			bi_setenv(char **argv, t_env *envi)
 {
 	if (!argv[1])
@@ -38,7 +62,7 @@ int			bi_setenv(char **argv, t_env *envi)
 		if (!(envi->val = ft_strdup(argv[2])))
 			return (1);
 	}
-	else
+	else if (check_var(argv))
 	{
 		if (!(envi->next = (t_env *)malloc(sizeof(t_env))))
 			return (1);
