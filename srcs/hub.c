@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 20:31:58 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/24 01:58:19 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 02:20:51 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static char	**copy_env(t_env *envi)
 {
 	t_env	*or;
 	int		i;
+	char	*tmp;
 	char	**ret;
 
 	i = 0;
@@ -37,8 +38,11 @@ static char	**copy_env(t_env *envi)
 	envi = or;
 	while (envi)
 	{
-		if (!(ret[i] = ft_strjoin(ft_strjoin(envi->var, "="), envi->val)))
+		if (!(tmp = ft_strjoin(envi->var, "=")))
 			return (0);
+		if (!(ret[i] = ft_strjoin(tmp, envi->val)))
+			return (0);
+		ft_strdel(&tmp);
 		envi = envi->next;
 		i++;
 	}
@@ -89,6 +93,21 @@ static int	local_command(char **argv, t_env *envi)
 	return (0);
 }
 
+static void	free_env(t_env	*envi)
+{
+	t_env	*tmp;
+
+	while (envi)
+	{
+		tmp = envi->next;
+		ft_strdel(&envi->var);
+		ft_strdel(&envi->val);
+		free(envi);
+		envi = tmp;
+	}
+}
+
+
 int			hub(char **argv, t_env *envi)
 {
 	if (ft_strequ(argv[0], "env"))
@@ -102,7 +121,11 @@ int			hub(char **argv, t_env *envi)
 	else if (ft_strequ(argv[0], "cd"))
 		return (bi_cd(argv, envi));
 	else if (ft_strequ(argv[0], "exit"))
-		exit (0); //oublie pas de free
+	{
+		free_split(argv);
+		free_env(envi);
+		exit (0);
+	}
 	else if (path_prog(argv, envi))
 		return (1);
 	else if (local_command(argv, envi))
