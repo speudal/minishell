@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:09:32 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/24 02:57:47 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 03:52:34 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int			main(void)
 	com = 0;
 	prompt = 0;
 	if (!(envi = get_env()))
-		return (0);
+		return (ft_printf("minishell: error: couldn't get an environment.\n"));
 	while (69)
 	{
 		ft_strdel(&prompt);
