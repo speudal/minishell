@@ -6,22 +6,22 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 20:35:59 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/24 01:57:40 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 02:52:45 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	MINISHELL_H
+#ifndef MINISHELL_H
 # define MINISHELL_H
 
-typedef struct 				s_env
+typedef struct				s_env
 {
 	char					*var;
 	char					*val;
 	struct s_env			*next;
 }							t_env;
 
-typedef struct	stat		t_stat;
-typedef struct	dirent		t_dirent;
+typedef struct stat			t_stat;
+typedef struct dirent		t_dirent;
 
 char						**get_path(char **vne);
 char						**arg_repl(char **argv, t_env *envi);
