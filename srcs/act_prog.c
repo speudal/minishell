@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 22:12:24 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/24 01:55:29 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/24 03:00:36 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	do_it(char *path, char **argv, char **vne)
 		ft_printf("Couldn't fork on %s.\n", path);
 }
 
-int		act_prog(char *path, char **argv, char **vne)
+int			act_prog(char *path, char **argv, char **vne)
 {
 	DIR			*op;
 	char		*tmp;
@@ -41,10 +41,7 @@ int		act_prog(char *path, char **argv, char **vne)
 	t_stat		buf;
 
 	if (!(op = opendir(path)))
-	{
-		ft_printf("PATH: can't access to %s.\n", path);
-		return (0);
-	}
+		return (ft_printf("PATH: can't access to %s.\n", path));
 	while ((fil = readdir(op)))
 	{
 		tmp = ft_strjoin(path, "/");
