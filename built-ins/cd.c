@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 03:58:04 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/24 09:16:02 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/25 22:27:40 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,7 @@ static void	regular_case(char **argv, t_env *envi)
 int			bi_cd(char **argv, t_env *envi)
 {
 	t_stat	buf;
-	char	*pothome;
 
-	pothome = 0;
 	if (!argv[1])
 		no_mod_case(envi);
 	else
