@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 03:58:04 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/25 22:27:40 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/25 22:59:10 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,13 @@ static void	no_mod_case(t_env *envi)
 	else
 	{
 		getcwd(path, 256);
-		ch_enval(envi, "OLDPWD", path);
-		chdir(pothome);
-		ch_enval(envi, "PWD", pothome);
+		if (chdir(pothome) == -1)
+			ft_printf("cd: permission denied: %s\n", pothome);
+		else
+		{
+			ch_enval(envi, "OLDPWD", path);
+			ch_enval(envi, "PWD", pothome);
+		}
 		ft_strdel(&pothome);
 	}
 }
@@ -40,10 +44,14 @@ static void	less_case(t_env *envi)
 
 	if (!(pothome = get_enval(envi, "OLDPWD")))
 		return ;
-	getcwd(path, 256);
-	ch_enval(envi, "OLDPWD", path);
-	chdir(pothome);
-	ch_enval(envi, "PWD", pothome);
+	if (chdir(pothome) == -1)
+		ft_printf("cd: permission denied: %s\n", pothome);
+	else
+	{
+		getcwd(path, 256);
+		ch_enval(envi, "OLDPWD", path);
+		ch_enval(envi, "PWD", pothome);
+	}
 	ft_strdel(&pothome);
 }
 
