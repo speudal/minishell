@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:09:32 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/24 03:52:34 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/26 00:48:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int			main(void)
 	prompt = 0;
 	if (!(envi = get_env()))
 		return (ft_printf("minishell: error: couldn't get an environment.\n"));
-	while (69)
+	while (42)
 	{
 		ft_strdel(&prompt);
 		prompt = prompted(envi);
