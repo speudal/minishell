@@ -6,7 +6,7 @@
 /*   By: tduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 23:08:41 by tduval            #+#    #+#             */
-/*   Updated: 2018/12/25 22:27:05 by tduval           ###   ########.fr       */
+/*   Updated: 2018/12/25 22:43:33 by tduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,18 @@
 
 static void	wave_case(char **argv, t_env *envi, int i)
 {
+	char	*tmp;
 	char	*om;
 
 	if (!(om = get_enval(envi, "HOME")))
 		return ;
-	if (!(argv[i] = ft_strjoin(om, argv[i] + 1)))
+	if (!(tmp = ft_strdup(argv[i])))
+		return ;
+	free(argv[i]);
+	if (!(argv[i] = ft_strjoin(om, tmp + 1)))
 		return ;
 	free(om);
+	free(tmp);
 }
 
 static void	dolar_case(char **argv, t_env *envi, int i)
