@@ -81,7 +81,7 @@ int			bi_cd(char **argv, t_env *envi)
 		if (ft_strequ(argv[1], "-"))
 			less_case(envi);
 		else if ((lstat(argv[1], &buf) == -1))
-			ft_printf("cd: no such file or directoy: %s\n", argv[1]);
+			ft_printf("cd: no such file or directory: %s\n", argv[1]);
 		else if (S_ISDIR(buf.st_mode))
 			regular_case(argv, envi);
 		else
