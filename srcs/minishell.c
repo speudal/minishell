@@ -99,7 +99,7 @@ int			main(void)
 		prompt = prompted(envi);
 		ft_printf("%s\033[1;31m> \e[39m", prompt);
 		com = 0;
-		if (get_next_line(1, &com))
+		if (get_next_line(0, &com))
 		{
 			if (!split_main(com, envi))
 				return (0);
